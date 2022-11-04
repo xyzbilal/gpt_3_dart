@@ -41,7 +41,10 @@ class OpenAI {
       bool? stream,
       int? logProbs,
       bool? echo,
-      String? engine}) async {
+      String? engine,
+      double? presencePenalty,
+      double? frequencyPenalty
+      }) async {
     String apiKey = this.apiKey;
 
     List data = [];
@@ -51,6 +54,11 @@ class OpenAI {
     data.add(Param('stream', stream));
     data.add(Param('logprobs', logProbs));
     data.add(Param('echo', echo));
+    data.add(Param('presence_penalty', presencePenalty));
+    data.add(Param('frequency_penalty', frequencyPenalty));
+
+
+
     Map map2 =
         Map.fromIterable(data, key: (e) => e.name, value: (e) => e.value);
     map2.removeWhere((key, value) => key == null || value == null);
