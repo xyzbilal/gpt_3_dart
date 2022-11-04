@@ -42,8 +42,9 @@ class OpenAI {
       int? logProbs,
       bool? echo,
       String? engine,
-      double? presencePenalty,
-      double? frequencyPenalty
+      dynamic stop,
+      num presencePenalty = 0,
+      num frequencyPenalty = 0,
       }) async {
     String apiKey = this.apiKey;
 
@@ -56,8 +57,7 @@ class OpenAI {
     data.add(Param('echo', echo));
     data.add(Param('presence_penalty', presencePenalty));
     data.add(Param('frequency_penalty', frequencyPenalty));
-
-
+     data.add(Param('stop', stop));
 
     Map map2 =
         Map.fromIterable(data, key: (e) => e.name, value: (e) => e.value);
